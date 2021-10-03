@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template,request
 
 
 app = Flask(__name__)
@@ -7,6 +7,12 @@ app = Flask(__name__)
 def index():
 
     return "hello world"
+
+
+@app.route("/login",methods=["POST","GET"])
+def login():
+
+    return render_template("login.htm")
 
 
 if __name__ == "__main__":
