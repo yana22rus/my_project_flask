@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash
 import sqlite3 as sq
 
 app = Flask(__name__)
@@ -7,23 +7,8 @@ app.config['SECRET_KEY'] = 'my_secret_key'
 
 @app.route("/")
 def index():
-    return "hello world"
 
-
-def test_uniq(login):
-    with sq.connect("users.sql") as con:
-        cur = con.cursor()
-
-        cur.execute("SELECT login FROM users")
-
-        for row in cur.fetchall():
-
-            if row[0] == login:
-                break
-
-        return flash("Логин уже есть в системе", category='error')
-
-
+    return render_template("index.htm")
 
 
 @app.route("/login", methods=["POST", "GET"])
